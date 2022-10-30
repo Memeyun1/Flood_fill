@@ -31,10 +31,18 @@ def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> Li
             return None
         else:
             input_board[c] = input_board[c][:d] + new + input_board[c][d + 1:]
-            researchall(c - 1, d)
-            researchall(c, d - 1)
-            researchall(c, d + 1)
-            researchall(c + 1, d)
+
+            if c > 0:
+                researchall(c - 1, d)
+
+            if d > 0:
+                researchall(c, d - 1)
+
+            if d + 1 < len(input_board[0]):
+                researchall(c, d + 1)
+
+            if c + 1 < len(input_board):
+                researchall(c + 1, d)
 
     researchall(x,y)
     return input_board
